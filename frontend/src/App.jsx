@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Link, useLocation } from 'react-router-dom'
+import Home from './pages/Home'
+import Assessment from './pages/Assessment'
+import DietChart from './pages/DietChart'
+import NutrientReport from './pages/NutrientReport'
 
-function App() {
-  const [count, setCount] = useState(0)
+const NAV_LINKS = [
+  { path: '/', label: 'Home' },
+  { path: '/assessment', label: 'Prakriti Assessment' },
+  { path: '/diet-chart', label: 'Diet Chart' },
+  { path: '/nutrients', label: 'Nutrient Report' },
+]
+
+export default function App() {
+  const location = useLocation()
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="min-h-screen" style={{ backgroundColor: '#FAF6EE', color: '#2D4A3E' }}>
+      <nav className="shadow-lg" style={{ backgroundColor: '#2D4A3E' }}>
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+          <Link to="/" className="text-xl font-bold tracking-wide text-white flex items-center gap-2">
+            <span className="text-2xl">&#x1F33F;</span>
+            AyurDiet Pro
+          </Link>
+          <div className="flex gap-1">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                  location.pathname === link.path
+                    ? 'text-white'
+                    : 'text-white/70 hover:text-white'
+                }`}
+                style={
+                  location.pathname === link.path
+                    ? { backgroundColor: '#E8732A' }
+                    : {}
+                }
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </nav>
+      <main className="max-w-6xl mx-auto px-4 py-8">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/assessment" element={<Assessment />} />
+          <Route path="/diet-chart" element={<DietChart />} />
+          <Route path="/nutrients" element={<NutrientReport />} />
+        </Routes>
+      </main>
+    </div>
   )
 }
-
-export default App

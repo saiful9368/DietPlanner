@@ -82,7 +82,7 @@ DOSHA_COLS = {
 }
 
 
-def _get_dosha_filter_cols(dosha: str) -> list[str]:
+def _get_dosha_filter_cols(dosha: str) -> list:
     """Return the filter columns for a dosha string (handles dual doshas)."""
     parts = [d.strip() for d in dosha.split("+")]
     cols = []

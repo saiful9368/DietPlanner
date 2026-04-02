@@ -51,7 +51,7 @@ RDA = {
 }
 
 
-def _find_food(name: str) -> pd.Series | None:
+def _find_food(name: str):
     lookup = name.lower().strip()
     match = _food_db[_food_db["_lookup_name"] == lookup]
     if not match.empty:

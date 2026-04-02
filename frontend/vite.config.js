@@ -6,9 +6,9 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      '/predict-dosha': 'http://localhost:8000',
-      '/generate-diet': 'http://localhost:8000',
-      '/analyse-nutrients': 'http://localhost:8000',
-    },
+  '/predict-dosha': 'http://localhost:8888',
+  '/generate-diet': 'http://localhost:8888',
+  '/analyse-nutrients': 'http://localhost:8888',
+},
   },
 })
